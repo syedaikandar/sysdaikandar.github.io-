@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sykanex Integrated Solutions | Professional IT & Business Services</title>
+    <title>SyKanEX Integrated Solutions | Driving Success Through Smart Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -16,13 +16,16 @@
         }
         
         :root {
-            --primary: #2a3b8f;
-            --secondary: #00a8e8;
-            --accent: #ff6b35;
-            --light: #f8f9fa;
+            --primary: #1a237e;
+            --secondary: #00b0ff;
+            --accent: #ff4081;
+            --light: #ffffff;
             --dark: #212529;
             --gray: #6c757d;
-            --light-gray: #e9ecef;
+            --light-gray: #f8f9fa;
+            --gradient: linear-gradient(135deg, #1a237e 0%, #00b0ff 100%);
+            --gradient-accent: linear-gradient(135deg, #ff4081 0%, #ff9100 100%);
+            --footer-bg: #0d1530;
         }
         
         body {
@@ -30,6 +33,7 @@
             line-height: 1.6;
             color: var(--dark);
             background-color: #fff;
+            overflow-x: hidden;
         }
         
         h1, h2, h3, h4, h5 {
@@ -42,17 +46,24 @@
             width: 100%;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 20px;
+            padding: 0 15px;
         }
         
         /* Header Styles */
         header {
-            background-color: white;
+            background-color: rgba(255, 255, 255, 0.98);
             box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        header.scrolled {
+            padding: 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
         }
         
         .header-container {
@@ -65,22 +76,37 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            text-decoration: none;
         }
         
-        .logo-img {
+        .logo-icon {
+            width: 50px;
             height: 50px;
-            width: auto;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            flex-shrink: 0;
         }
         
         .logo-text {
-            font-size: 24px;
+            font-size: 18px;
             font-weight: 700;
             color: var(--primary);
+            line-height: 1.2;
         }
         
         .logo-text span {
             color: var(--secondary);
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            margin-top: 2px;
         }
         
         nav ul {
@@ -89,15 +115,17 @@
         }
         
         nav ul li {
-            margin-left: 30px;
+            margin-left: 25px;
         }
         
         nav ul li a {
             text-decoration: none;
             color: var(--dark);
             font-weight: 500;
-            transition: color 0.3s;
+            transition: all 0.3s;
             position: relative;
+            padding: 5px 0;
+            font-size: 15px;
         }
         
         nav ul li a:hover {
@@ -108,11 +136,12 @@
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
-            background: var(--secondary);
+            height: 3px;
+            background: var(--gradient);
             left: 0;
-            bottom: -5px;
+            bottom: 0;
             transition: width 0.3s;
+            border-radius: 3px;
         }
         
         nav ul li a:hover::after {
@@ -121,125 +150,518 @@
         
         .mobile-menu-btn {
             display: none;
-            font-size: 24px;
+            font-size: 22px;
             background: none;
             border: none;
             color: var(--primary);
             cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .mobile-menu-btn:hover {
+            background: var(--light-gray);
         }
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, rgba(42, 59, 143, 0.9) 0%, rgba(0, 168, 232, 0.85) 100%), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80');
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
             color: white;
-            padding: 160px 0 100px;
+            padding: 150px 0 80px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 100%;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease-out;
+            background: linear-gradient(to right, #fff, var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+        }
+        
+        .hero .tagline {
+            font-size: 1.3rem;
             margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.2s both;
+            color: var(--secondary);
+            font-weight: 500;
         }
         
         .hero p {
-            font-size: 1.2rem;
-            max-width: 800px;
+            font-size: 1rem;
             margin: 0 auto 30px;
             opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.4s both;
+            line-height: 1.7;
+            padding: 0 10px;
         }
         
         .cta-button {
             display: inline-block;
-            background-color: var(--accent);
+            background: var(--gradient-accent);
             color: white;
-            padding: 15px 35px;
+            padding: 15px 30px;
             border-radius: 50px;
             text-decoration: none;
             font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            border: 2px solid var(--accent);
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            animation: fadeInUp 1s ease-out 0.6s both;
+            box-shadow: 0 8px 25px rgba(255, 64, 129, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            min-width: 200px;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
+            z-index: -1;
         }
         
         .cta-button:hover {
-            background-color: transparent;
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(255, 64, 129, 0.4);
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .about-content {
+            width: 100%;
+        }
+        
+        .about-content h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .about-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+        
+        .about-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .stat-item {
+            text-align: center;
+            background: white;
+            padding: 20px 15px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            flex: 1;
+        }
+        
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .about-image {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Message from CEO Section */
+        .ceo-message {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+            position: relative;
+        }
+        
+        .ceo-container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+        
+        .ceo-content {
+            padding: 30px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .ceo-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gradient);
+        }
+        
+        .ceo-content h2 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .ceo-content h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+        
+        .ceo-quote {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--dark);
+            margin-bottom: 25px;
+            position: relative;
+            padding-left: 25px;
+            border-left: 3px solid var(--secondary);
+        }
+        
+        .ceo-quote::before {
+            content: '"';
+            position: absolute;
+            font-size: 3.5rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            top: -15px;
+            left: 10px;
+            font-family: Georgia, serif;
+        }
+        
+        .ceo-signature {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .ceo-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 5px;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        .ceo-title {
+            color: var(--secondary);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        .ceo-images {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+        
+        .ceo-image-item {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            height: 200px;
+            transition: transform 0.3s;
+        }
+        
+        .ceo-image-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .ceo-image-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .ceo-image-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Vision & Mission */
+        .vision-mission {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .vision-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .vision-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .vision-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--gradient);
+        }
+        
+        .vision-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+        }
+        
+        .vision-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
             color: white;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            font-size: 1.5rem;
+        }
+        
+        .vision-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            text-align: center;
+        }
+        
+        .vision-card p {
+            color: var(--gray);
+            line-height: 1.7;
+            text-align: center;
         }
         
         /* Services Section */
         .section-title {
             text-align: center;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
         
         .section-title h2 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
             margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
         }
         
         .section-title p {
             color: var(--gray);
-            max-width: 700px;
-            margin: 0 auto;
+            margin: 30px auto 0;
+            font-size: 1rem;
+            line-height: 1.7;
+            padding: 0 10px;
         }
         
         .services {
-            padding: 100px 0;
-            background-color: var(--light);
+            padding: 80px 0;
+            background: #ffffff;
+            position: relative;
         }
         
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: 1fr;
+            gap: 25px;
         }
         
         .service-card {
             background-color: white;
-            border-radius: 10px;
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s, box-shadow 0.3s;
-            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .service-image-container {
+            position: relative;
+            height: 180px;
+            overflow: hidden;
+        }
+        
+        .service-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .service-card:hover .service-image {
+            transform: scale(1.05);
+        }
+        
+        .service-title-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(26, 35, 126, 0.9), rgba(26, 35, 126, 0.7));
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            color: white;
+            min-height: 70px;
         }
         
         .service-icon {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
+            font-size: 1.5rem;
+            color: white;
+            margin-right: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            flex-shrink: 0;
         }
         
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--dark);
+        .service-title {
+            font-size: 1.3rem;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .service-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
         }
         
         .service-card p {
             color: var(--gray);
             margin-bottom: 20px;
+            line-height: 1.6;
+            flex-grow: 1;
+            font-size: 0.95rem;
         }
         
         .service-features {
             list-style: none;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--light-gray);
         }
         
         .service-features li {
-            padding: 5px 0;
+            padding: 6px 0;
             color: var(--dark);
             position: relative;
-            padding-left: 25px;
+            padding-left: 20px;
+            font-size: 0.9rem;
         }
         
         .service-features li:before {
@@ -248,48 +670,215 @@
             left: 0;
             color: var(--secondary);
             font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        /* Projects Section */
+        .projects {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--secondary);
+        }
+        
+        .project-content {
+            padding: 25px;
+        }
+        
+        .project-category {
+            display: inline-block;
+            background: var(--gradient);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .project-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .project-card p {
+            color: var(--gray);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+        
+        .tech-tag {
+            background: rgba(0, 176, 255, 0.1);
+            color: var(--secondary);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        
+        .project-link:hover {
+            color: var(--secondary);
+            gap: 10px;
+        }
+        
+        /* Why Choose Us Section */
+        .why-choose {
+            padding: 80px 0;
+            background: #ffffff;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            border-radius: 15px;
+            background: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-icon {
+            width: 65px;
+            height: 65px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 1.8rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 0.95rem;
         }
         
         /* WhatsApp Float Button */
         .whatsapp-float {
             position: fixed;
-            width: 60px;
-            height: 60px;
-            bottom: 40px;
-            right: 40px;
-            background-color: #25d366;
+            width: 55px;
+            height: 55px;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
             color: #FFF;
             border-radius: 50px;
             text-align: center;
-            font-size: 30px;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-            z-index: 100;
+            font-size: 26px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.3);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             text-decoration: none;
+            overflow: hidden;
+        }
+        
+        .whatsapp-float::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transform: scale(0);
+            transition: transform 0.5s ease;
+        }
+        
+        .whatsapp-float:hover::before {
+            transform: scale(2);
+        }
+        
+        .whatsapp-float i {
+            position: relative;
+            z-index: 1;
         }
         
         .whatsapp-float:hover {
-            background-color: #128c7e;
-            color: white;
-            transform: scale(1.1);
-            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px) scale(1.1);
+            box-shadow: 0 12px 25px rgba(37, 211, 102, 0.4);
         }
         
         .whatsapp-text {
             position: absolute;
-            right: 70px;
-            background-color: #25d366;
+            right: 65px;
+            background: #25D366;
             color: white;
             padding: 8px 15px;
-            border-radius: 5px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
             white-space: nowrap;
             opacity: 0;
             transition: opacity 0.3s;
             pointer-events: none;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .whatsapp-float:hover .whatsapp-text {
@@ -298,34 +887,37 @@
         
         /* Contact Section */
         .contact-section {
-            padding: 100px 0;
-            background-color: white;
+            padding: 80px 0;
+            background: #ffffff;
+            position: relative;
         }
         
         .contact-container {
             display: flex;
-            gap: 50px;
-            align-items: flex-start;
+            flex-direction: column;
+            gap: 40px;
         }
         
         .contact-info {
-            flex: 1;
+            width: 100%;
         }
         
         .contact-info h2 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             color: var(--primary);
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         
         .contact-info p {
             color: var(--gray);
-            margin-bottom: 25px;
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.7;
         }
         
         .contact-details {
             list-style: none;
-            margin-top: 30px;
+            margin-top: 25px;
         }
         
         .contact-details li {
@@ -333,21 +925,45 @@
             align-items: flex-start;
             margin-bottom: 20px;
             color: var(--dark);
+            padding: 15px;
+            border-radius: 10px;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.8);
+            border: 1px solid #f0f0f0;
+        }
+        
+        .contact-details li:hover {
+            background: white;
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
         }
         
         .contact-details i {
             color: var(--secondary);
-            margin-right: 15px;
-            margin-top: 5px;
+            margin-right: 12px;
+            margin-top: 3px;
             font-size: 1.2rem;
+            min-width: 25px;
+        }
+        
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-details a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
         }
         
         .contact-form {
-            flex: 1;
-            background-color: var(--light);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.05);
         }
         
         .form-group {
@@ -356,74 +972,158 @@
         
         .form-group label {
             display: block;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             color: var(--dark);
             font-weight: 500;
+            font-size: 0.95rem;
         }
         
         .form-group input,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
+            border: 1px solid #e1e6f0;
+            border-radius: 8px;
             font-family: 'Roboto', sans-serif;
-            font-size: 1rem;
-            transition: border-color 0.3s;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            background: #f9fbff;
         }
         
         .form-group input:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--secondary);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(0, 176, 255, 0.1);
         }
         
         .submit-btn {
-            background-color: var(--primary);
+            background: var(--gradient);
             color: white;
             border: none;
-            padding: 12px 30px;
-            border-radius: 5px;
+            padding: 14px 30px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: 600;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
+            width: 100%;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.7s;
         }
         
         .submit-btn:hover {
-            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(26, 35, 126, 0.2);
+        }
+        
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        /* Success/Error Messages */
+        .message {
+            padding: 12px;
+            margin: 15px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 500;
+            display: none;
+            font-size: 0.95rem;
+        }
+        
+        .success-message {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            display: none;
+        }
+        
+        .error-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            display: none;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background: var(--footer-bg);
             color: white;
-            padding: 70px 0 30px;
+            padding: 60px 0 25px;
+            position: relative;
         }
         
         .footer-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 50px;
+            grid-template-columns: 1fr;
+            gap: 35px;
+            margin-bottom: 40px;
         }
         
         .footer-column h3 {
             font-size: 1.3rem;
-            margin-bottom: 25px;
+            margin-bottom: 20px;
             color: white;
             position: relative;
-            padding-bottom: 10px;
+            padding-bottom: 12px;
+            font-weight: 700;
         }
         
         .footer-column h3::after {
             content: '';
             position: absolute;
-            width: 50px;
+            width: 40px;
             height: 3px;
-            background-color: var(--secondary);
+            background: var(--secondary);
             bottom: 0;
             left: 0;
+            border-radius: 2px;
+        }
+        
+        .footer-column p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
         }
         
         .footer-links {
@@ -435,14 +1135,16 @@
         }
         
         .footer-links a {
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: all 0.3s;
+            display: inline-block;
+            font-size: 0.95rem;
         }
         
         .footer-links a:hover {
             color: var(--secondary);
-            padding-left: 5px;
+            padding-left: 8px;
         }
         
         .contact-info-footer {
@@ -453,18 +1155,32 @@
             display: flex;
             align-items: flex-start;
             margin-bottom: 15px;
-            color: #ccc;
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 0.95rem;
         }
         
         .contact-info-footer i {
             color: var(--secondary);
-            margin-right: 10px;
-            margin-top: 5px;
+            margin-right: 12px;
+            margin-top: 3px;
+            font-size: 1.1rem;
+            min-width: 18px;
+        }
+        
+        .contact-info-footer a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info-footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
         }
         
         .social-links {
             display: flex;
-            gap: 15px;
+            gap: 12px;
             margin-top: 20px;
         }
         
@@ -474,53 +1190,238 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
             color: white;
             text-decoration: none;
             transition: all 0.3s;
+            font-size: 1.1rem;
         }
         
         .social-links a:hover {
-            background-color: var(--secondary);
+            background: var(--secondary);
             transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
         }
         
         .copyright {
             text-align: center;
             padding-top: 30px;
-            border-top: 1px solid #444;
-            color: #aaa;
-            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.85rem;
         }
         
-        /* Responsive Design */
-        @media (max-width: 992px) {
-            .contact-container {
-                flex-direction: column;
+        /* Service Headings */
+        .service-title {
+            font-weight: 700 !important;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .hero {
+                padding: 160px 0 100px;
             }
             
             .hero h1 {
                 font-size: 2.8rem;
             }
+            
+            .hero .tagline {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+                max-width: 700px;
+            }
+            
+            .about-container {
+                flex-direction: row;
+                align-items: center;
+                gap: 50px;
+            }
+            
+            .about-content {
+                flex: 1;
+            }
+            
+            .about-image {
+                flex: 1;
+            }
+            
+            .about-stats {
+                flex-direction: row;
+                gap: 20px;
+            }
+            
+            .stat-item {
+                padding: 20px;
+            }
+            
+            .ceo-container {
+                flex-direction: row;
+                align-items: flex-start;
+                gap: 40px;
+            }
+            
+            .ceo-images {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .ceo-image-item.large {
+                grid-column: span 2;
+                height: 180px;
+            }
+            
+            .vision-container,
+            .services-grid,
+            .projects-grid,
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 25px;
+            }
+            
+            .contact-container {
+                flex-direction: row;
+                gap: 50px;
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+            
+            .logo-text {
+                font-size: 20px;
+            }
+            
+            .logo-text span {
+                font-size: 13px;
+            }
         }
         
-        @media (max-width: 768px) {
+        /* Desktop Styles */
+        @media (min-width: 992px) {
+            .container {
+                max-width: 1200px;
+            }
+            
+            .hero {
+                padding: 180px 0 120px;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .hero .tagline {
+                font-size: 1.8rem;
+            }
+            
+            .about {
+                padding: 100px 0;
+            }
+            
+            .ceo-message,
+            .vision-mission,
+            .services,
+            .projects,
+            .why-choose,
+            .contact-section {
+                padding: 100px 0;
+            }
+            
+            .about-content h2,
+            .section-title h2 {
+                font-size: 2.5rem;
+            }
+            
+            .vision-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .projects-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .features-grid {
+                grid-template-columns: repeat(3, 2fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .logo {
+                gap: 15px;
+            }
+            
+            .logo-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+            
+            .logo-text {
+                font-size: 22px;
+            }
+            
+            .logo-text span {
+                font-size: 14px;
+            }
+            
+            nav ul li {
+                margin-left: 30px;
+            }
+            
+            nav ul li a {
+                font-size: 16px;
+            }
+        }
+        
+        /* Mobile Menu Styles */
+        @media (max-width: 991px) {
             .mobile-menu-btn {
-                display: block;
+                display: flex;
             }
             
             nav ul {
                 position: fixed;
-                top: 70px;
+                top: 80px;
                 left: -100%;
                 flex-direction: column;
                 background-color: white;
                 width: 100%;
-                text-align: center;
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                text-align: left;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
                 transition: left 0.3s;
                 padding: 20px 0;
+                z-index: 999;
+                border-radius: 0 0 15px 15px;
+                max-height: calc(100vh - 80px);
+                overflow-y: auto;
             }
             
             nav ul.active {
@@ -528,76 +1429,42 @@
             }
             
             nav ul li {
-                margin: 15px 0;
+                margin: 0;
+                padding: 0 20px;
             }
             
-            .hero h1 {
-                font-size: 2.3rem;
+            nav ul li a {
+                display: block;
+                padding: 12px 0;
+                font-size: 16px;
+                border-bottom: 1px solid rgba(0, 0, 0, 0.05);
             }
             
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .section-title h2 {
-                font-size: 2rem;
-            }
-            
-            .whatsapp-float {
-                width: 50px;
-                height: 50px;
-                bottom: 30px;
-                right: 30px;
-                font-size: 25px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .hero {
-                padding: 140px 0 80px;
-            }
-            
-            .hero h1 {
-                font-size: 2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .cta-button {
-                padding: 12px 25px;
-            }
-            
-            .service-card {
-                padding: 20px;
-            }
-            
-            .whatsapp-float {
-                width: 45px;
-                height: 45px;
-                bottom: 20px;
-                right: 20px;
-                font-size: 22px;
+            nav ul li:last-child a {
+                border-bottom: none;
             }
         }
     </style>
 </head>
 <body>
     <!-- WhatsApp Float Button -->
-    <a href="https://wa.me/923001234567" target="_blank" class="whatsapp-float">
+    <a href="https://wa.me/92472740080" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
-        <span class="whatsapp-text">Chat on WhatsApp</span>
+        <span class="whatsapp-text">Chat with us</span>
     </a>
     
     <!-- Header -->
-    <header>
+    <header id="header">
         <div class="container header-container">
-            <div class="logo">
-                <!-- Replace 'logo.png' with your actual logo file -->
-                <img src="logo.png" alt="Sykanex Integrated Solutions Logo" class="logo-img">
-                <div class="logo-text">Sykanex<span>Integrated Solutions</span></div>
-            </div>
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    SIS
+                </div>
+                <div class="logo-text">
+                    SyKanEX Integrated Solutions
+                    <span>Driving Success Through Smart Solutions</span>
+                </div>
+            </a>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
                 <i class="fas fa-bars"></i>
@@ -606,7 +1473,11 @@
             <nav>
                 <ul id="navMenu">
                     <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#ceo">CEO Message</a></li>
+                    <li><a href="#vision">Vision & Mission</a></li>
                     <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -616,9 +1487,119 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="container">
-            <h1>Sykanex Integrated Solutions</h1>
-            <p>Providing comprehensive IT, development, and business support services to help your organization thrive in the digital age. From web development to data analytics, we offer end-to-end solutions tailored to your needs.</p>
-            <a href="#contact" class="cta-button">Get In Touch</a>
+            <div class="hero-content">
+                <h1>SyKanEX Integrated Solutions</h1>
+                <div class="tagline">Driving Success Through Smart Solutions</div>
+                <p>Providing comprehensive IT, development, and business support services to help your organization thrive in the digital age. From web development to data analytics, we offer end-to-end solutions tailored to your needs.</p>
+                <a href="#contact" class="cta-button">Get Started Today</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>About SyKanEX</h2>
+                    <p>SyKanEX Integrated Solutions is a premier provider of comprehensive technology and business support services. We specialize in delivering integrated solutions that drive business growth, enhance operational efficiency, and foster innovation.</p>
+                    <p>With years of industry experience and a team of dedicated professionals, we help businesses navigate the complexities of the digital landscape and achieve their strategic objectives through smart, customized solutions.</p>
+                    
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">250+</div>
+                            <div class="stat-label">Projects Completed</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">Happy Clients</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">5+</div>
+                            <div class="stat-label">Years Experience</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="About SyKanEX">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Message from CEO Section -->
+    <section class="ceo-message" id="ceo">
+        <div class="container">
+            <div class="section-title">
+                <h2>Message from Our CEO</h2>
+                <p>Leadership, Vision, and Commitment to Excellence</p>
+            </div>
+            
+            <div class="ceo-container">
+                <div class="ceo-content">
+                    <h2>A Vision for Digital Excellence</h2>
+                    <div class="ceo-quote">
+                        At SyKanEX, we believe that technology should empower businesses, not complicate them. Our mission is to bridge the gap between innovative technology and practical business needs. Every day, I'm inspired by our team's dedication to creating solutions that drive real value for our clients.
+                        <br><br>
+                        Success in the digital age requires more than just technical expertise—it demands a deep understanding of business challenges and a commitment to building partnerships that last. We don't just deliver projects; we cultivate relationships and grow with our clients.
+                        <br><br>
+                        The future belongs to those who innovate, adapt, and embrace change. At SyKanEX, we're not just keeping up with technological advancements—we're helping shape them. Join us on this journey toward digital transformation and business excellence.
+                    </div>
+                    
+                    <div class="ceo-signature">
+                        <div class="ceo-name">Syed Sikandar Shah</div>
+                        <div class="ceo-title">Founder & CEO, SyKanEX Integrated Solutions</div>
+                    </div>
+                </div>
+                
+                <div class="ceo-images">
+                    <div class="ceo-image-item">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Digital Innovation">
+                    </div>
+                    <div class="ceo-image-item">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Team Collaboration">
+                    </div>
+                    <div class="ceo-image-item large">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Business Growth">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision & Mission Section -->
+    <section class="vision-mission" id="vision">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Vision & Mission</h2>
+                <p>Guiding principles that drive our commitment to excellence</p>
+            </div>
+            
+            <div class="vision-container">
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-eye"></i>
+                    </div>
+                    <h3>Our Vision</h3>
+                    <p>To be the leading provider of integrated technology solutions that transform businesses and drive sustainable growth in the digital economy.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Our Mission</h3>
+                    <p>To deliver innovative, reliable, and scalable technology solutions that empower businesses to thrive through excellence and integrity.</p>
+                </div>
+                
+                <div class="vision-card">
+                    <div class="vision-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Our Values</h3>
+                    <p>Integrity, Innovation, Excellence, Collaboration, and Client Success guide every decision we make and every solution we deliver.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -627,173 +1608,278 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Professional Services</h2>
-                <p>We offer a wide range of services to meet your business needs. Each service is delivered with expertise and attention to detail.</p>
+                <p>Comprehensive services designed to meet modern business needs with precision and expertise.</p>
             </div>
             
             <div class="services-grid">
                 <!-- Software & IT Solutions -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-laptop-code"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Software Development" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-laptop-code"></i>
+                            </div>
+                            <div class="service-title">Software & IT Solutions</div>
+                        </div>
                     </div>
-                    <h3>Software & IT Solutions</h3>
-                    <p>Custom software development and IT infrastructure solutions tailored to your business requirements.</p>
-                    <ul class="service-features">
-                        <li>Custom Software Development</li>
-                        <li>IT Infrastructure Setup</li>
-                        <li>System Integration</li>
-                        <li>Cloud Solutions</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Custom software development and IT infrastructure solutions tailored to your business requirements.</strong></p>
+                        <ul class="service-features">
+                            <li>Custom Software Development</li>
+                            <li>IT Infrastructure Setup</li>
+                            <li>System Integration</li>
+                            <li>Cloud Solutions</li>
+                            <li>API Development</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <!-- Web Development -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-code"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Web Development" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="service-title">Web Development</div>
+                        </div>
                     </div>
-                    <h3>Web Development</h3>
-                    <p>Responsive, modern websites and web applications that deliver exceptional user experiences.</p>
-                    <ul class="service-features">
-                        <li>Responsive Website Design</li>
-                        <li>E-commerce Solutions</li>
-                        <li>Web Applications</li>
-                        <li>CMS Development</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Responsive, modern websites and web applications that deliver exceptional user experiences.</strong></p>
+                        <ul class="service-features">
+                            <li>Responsive Website Design</li>
+                            <li>E-commerce Solutions</li>
+                            <li>Web Applications</li>
+                            <li>CMS Development</li>
+                            <li>Website Maintenance</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <!-- SEO Optimization -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-line"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="SEO Optimization" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="service-title">SEO Optimization</div>
+                        </div>
                     </div>
-                    <h3>SEO Optimization</h3>
-                    <p>Improve your website's visibility and ranking on search engines to attract more organic traffic.</p>
-                    <ul class="service-features">
-                        <li>Keyword Research</li>
-                        <li>On-Page Optimization</li>
-                        <li>Technical SEO</li>
-                        <li>Performance Analytics</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Improve your website's visibility and ranking on search engines to attract more organic traffic.</strong></p>
+                        <ul class="service-features">
+                            <li>Keyword Research & Analysis</li>
+                            <li>On-Page Optimization</li>
+                            <li>Technical SEO Audits</li>
+                            <li>Performance Analytics</li>
+                            <li>Content Strategy Development</li>
+                        </ul>
+                    </div>
                 </div>
                 
                 <!-- Graphics Designing -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-paint-brush"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Graphics Design" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-paint-brush"></i>
+                            </div>
+                            <div class="service-title">Graphics Designing</div>
+                        </div>
                     </div>
-                    <h3>Graphics Designing</h3>
-                    <p>Creative visual designs that communicate your brand message effectively and attractively.</p>
-                    <ul class="service-features">
-                        <li>Logo & Brand Identity</li>
-                        <li>Marketing Materials</li>
-                        <li>UI/UX Design</li>
-                        <li>Digital Illustrations</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Creative visual designs that communicate your brand message effectively and attractively.</strong></p>
+                        <ul class="service-features">
+                            <li>Logo & Brand Identity Design</li>
+                            <li>Marketing Materials Design</li>
+                            <li>UI/UX Design Services</li>
+                            <li>Digital Illustrations</li>
+                            <li>Social Media Graphics</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <!-- Meta Ads & Digital Marketing -->
+                <!-- Digital Marketing -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-bullhorn"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1460467820054-c87ab43e9b59?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Digital Marketing" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-bullhorn"></i>
+                            </div>
+                            <div class="service-title">Digital Marketing</div>
+                        </div>
                     </div>
-                    <h3>Meta Ads & Digital Marketing</h3>
-                    <p>Strategic digital marketing campaigns to increase brand awareness and drive conversions.</p>
-                    <ul class="service-features">
-                        <li>Social Media Advertising</li>
-                        <li>Campaign Strategy</li>
-                        <li>Audience Targeting</li>
-                        <li>Performance Tracking</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Strategic digital marketing campaigns to increase brand awareness and drive conversions.</strong></p>
+                        <ul class="service-features">
+                            <li>Social Media Advertising</li>
+                            <li>Campaign Strategy Development</li>
+                            <li>Audience Targeting & Segmentation</li>
+                            <li>Performance Tracking & Analytics</li>
+                            <li>Email Marketing Campaigns</li>
+                        </ul>
+                    </div>
                 </div>
                 
-                <!-- Data Mining & Web Research -->
+                <!-- Data Analytics -->
                 <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-database"></i>
+                    <div class="service-image-container">
+                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Data Analytics" class="service-image">
+                        <div class="service-title-container">
+                            <div class="service-icon">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="service-title">Data Analytics</div>
+                        </div>
                     </div>
-                    <h3>Data Mining & Web Research</h3>
-                    <p>Extract valuable insights from data sources to inform business decisions and strategies.</p>
-                    <ul class="service-features">
-                        <li>Competitive Analysis</li>
-                        <li>Market Research</li>
-                        <li>Data Extraction</li>
-                        <li>Trend Analysis</li>
-                    </ul>
+                    <div class="service-content">
+                        <p><strong>Extract valuable insights from data sources to inform business decisions and strategies.</strong></p>
+                        <ul class="service-features">
+                            <li>Data Mining & Research</li>
+                            <li>Data Cleaning & Preparation</li>
+                            <li>Statistical Analysis</li>
+                            <li>Data Visualization & Reporting</li>
+                            <li>Business Intelligence Solutions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-choose" id="why-choose">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose SyKanEX?</h2>
+                <p>We stand out from the competition with our commitment to excellence, innovation, and client satisfaction.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Expert Team</h3>
+                    <p>Our team comprises industry experts with years of experience in their respective fields.</p>
                 </div>
                 
-                <!-- Data Cleaning & Data Analytics -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-chart-bar"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
                     </div>
-                    <h3>Data Cleaning & Data Analytics</h3>
-                    <p>Transform raw data into actionable insights through thorough cleaning and analysis.</p>
-                    <ul class="service-features">
-                        <li>Data Quality Assessment</li>
-                        <li>Data Transformation</li>
-                        <li>Statistical Analysis</li>
-                        <li>Visualization & Reporting</li>
-                    </ul>
+                    <h3>Innovative Solutions</h3>
+                    <p>We leverage cutting-edge technologies to deliver innovative solutions that drive results.</p>
                 </div>
                 
-                <!-- Lead Generation & Prospect Research -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-search-dollar"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
                     </div>
-                    <h3>Lead Generation & Prospect Research</h3>
-                    <p>Identify and qualify potential customers to build a robust sales pipeline for your business.</p>
-                    <ul class="service-features">
-                        <li>Target Audience Identification</li>
-                        <li>Prospect List Building</li>
-                        <li>Lead Qualification</li>
-                        <li>CRM Integration</li>
-                    </ul>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock support ensures your business runs smoothly at all times.</p>
                 </div>
                 
-                <!-- Accounting & Operations Support -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-calculator"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
                     </div>
-                    <h3>Accounting & Operations Support</h3>
-                    <p>Comprehensive financial and operational support to keep your business running smoothly.</p>
-                    <ul class="service-features">
-                        <li>Bookkeeping Services</li>
-                        <li>Financial Reporting</li>
-                        <li>Process Optimization</li>
-                        <li>Compliance Management</li>
-                    </ul>
+                    <h3>Timely Delivery</h3>
+                    <p>We respect deadlines and deliver projects on time, every time.</p>
                 </div>
                 
-                <!-- Payroll Management -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-file-invoice-dollar"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-handshake"></i>
                     </div>
-                    <h3>Payroll Management</h3>
-                    <p>Accurate and timely payroll processing to ensure employee satisfaction and regulatory compliance.</p>
-                    <ul class="service-features">
-                        <li>Payroll Processing</li>
-                        <li>Tax Calculation & Filing</li>
-                        <li>Benefits Administration</li>
-                        <li>Compliance Reporting</li>
-                    </ul>
+                    <h3>Client-Centric Approach</h3>
+                    <p>Your success is our priority. We tailor solutions to meet your specific needs.</p>
                 </div>
                 
-                <!-- Freelance & Project-Based Services -->
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-user-tie"></i>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>Freelance & Project-Based Services</h3>
-                    <p>Flexible, project-based solutions for businesses that need specialized skills on demand.</p>
-                    <ul class="service-features">
-                        <li>Project-Based Consulting</li>
-                        <li>Specialized Skill Hire</li>
-                        <li>Short-Term Contracts</li>
-                        <li>Flexible Engagement Models</li>
-                    </ul>
+                    <h3>Quality Assurance</h3>
+                    <p>Rigorous testing and quality checks ensure flawless delivery of every project.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Recent Projects</h2>
+                <p>Explore some of our successful projects and case studies.</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="E-commerce Platform" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">Web Development</span>
+                        <h3>TechShop E-commerce Platform</h3>
+                        <p>A comprehensive e-commerce solution for an electronics retailer with advanced inventory management.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                        
+                        <a href="#contact" class="project-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Analytics Dashboard" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">Data Analytics</span>
+                        <h3>Business Intelligence Dashboard</h3>
+                        <p>Real-time analytics dashboard for a manufacturing company providing insights into production.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Tableau</span>
+                            <span class="tech-tag">SQL</span>
+                        </div>
+                        
+                        <a href="#contact" class="project-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="CRM System" class="project-image">
+                    <div class="project-content">
+                        <span class="project-category">Software Development</span>
+                        <h3>Enterprise CRM System</h3>
+                        <p>Custom CRM solution for a service-based company with lead management and customer support.</p>
+                        
+                        <div class="project-tech">
+                            <span class="tech-tag">.NET Core</span>
+                            <span class="tech-tag">Angular</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                        
+                        <a href="#contact" class="project-link">
+                            View Case Study <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -801,81 +1887,97 @@
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <div class="container contact-container">
-            <div class="contact-info">
+        <div class="container">
+            <div class="section-title">
                 <h2>Get In Touch</h2>
-                <p>Ready to transform your business with our integrated solutions? Contact us today to discuss your project requirements or schedule a consultation.</p>
-                <p>We're here to help you achieve your business goals with our comprehensive range of services.</p>
-                
-                <ul class="contact-details">
-                    <li>
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong><br>
-                            <a href="mailto:syedsikandarshah963@gmail.com">syedsikandarshah963@gmail.com</a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fab fa-whatsapp"></i>
-                        <div>
-                            <strong>WhatsApp</strong><br>
-                            <a href="https://wa.me/923001234567" target="_blank">+92 300 1234567</a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-globe"></i>
-                        <div>
-                            <strong>Website</strong><br>
-                            <a href="https://sykanex.online" target="_blank">sykanex.online</a>
-                        </div>
-                    </li>
-                    <li>
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Business Hours</strong><br>
-                            Monday - Friday: 9:00 AM - 6:00 PM
-                        </div>
-                    </li>
-                </ul>
+                <p>Ready to transform your business? Contact us today for a consultation.</p>
             </div>
             
-            <div class="contact-form">
-                <h3>Send us a message</h3>
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Full Name</label>
-                        <input type="text" id="name" required>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p>We're here to help you achieve your business goals with our comprehensive range of services.</p>
+                    
+                    <ul class="contact-details">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email</strong><br>
+                                <a href="mailto:syedsikandarshah963@gmail.com">syedsikandarshah963@gmail.com</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <div>
+                                <strong>WhatsApp</strong><br>
+                                <a href="https://wa.me/92472740080" target="_blank">+92 472 740080</a>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Business Hours</strong><br>
+                                Monday - Friday: 9:00 AM - 6:00 PM
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <strong>Service Areas</strong><br>
+                                Global Services • Remote Support Available
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Send us a message</h3>
+                    <p style="color: var(--gray); margin-bottom: 20px;">Fill out the form below and we'll get back to you as soon as possible.</p>
+                    
+                    <!-- Success/Error Messages -->
+                    <div id="successMessage" class="message success-message">
+                        <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email Address</label>
-                        <input type="email" id="email" required>
+                    <div id="errorMessage" class="message error-message">
+                        <i class="fas fa-exclamation-circle"></i> There was an error sending your message. Please try again.
                     </div>
-                    <div class="form-group">
-                        <label for="phone">Phone Number</label>
-                        <input type="tel" id="phone">
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Service Interested In</label>
-                        <select id="service" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px;">
-                            <option value="">Select a service</option>
-                            <option value="web">Web Development</option>
-                            <option value="software">Software & IT Solutions</option>
-                            <option value="seo">SEO Optimization</option>
-                            <option value="graphics">Graphics Designing</option>
-                            <option value="marketing">Digital Marketing</option>
-                            <option value="data">Data Analytics</option>
-                            <option value="lead">Lead Generation</option>
-                            <option value="accounting">Accounting Support</option>
-                            <option value="payroll">Payroll Management</option>
-                            <option value="freelance">Freelance Services</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Send Message</button>
-                </form>
+                    
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service Interested In</label>
+                            <select id="service" name="service">
+                                <option value="">Select a service</option>
+                                <option value="Software & IT Solutions">Software & IT Solutions</option>
+                                <option value="Web Development">Web Development</option>
+                                <option value="SEO Optimization">SEO Optimization</option>
+                                <option value="Graphics Designing">Graphics Designing</option>
+                                <option value="Digital Marketing">Digital Marketing</option>
+                                <option value="Data Analytics">Data Analytics</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="Tell us about your project or requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span id="submitText">Send Message</span>
+                            <span id="submitSpinner" class="spinner" style="display: none;"></span>
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </section>
@@ -885,18 +1987,17 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
-                    <h3>Sykanex Integrated Solutions</h3>
-                    <p>Providing comprehensive IT, development, and business support services to help organizations thrive in the digital age.</p>
-                    <p>Expert solutions tailored to your specific business needs.</p>
+                    <h3>SyKanEX Integrated Solutions</h3>
+                    <p>Driving Success Through Smart Solutions. We provide comprehensive IT, development, and business support services to help organizations thrive.</p>
                     <div class="social-links">
-                        <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp">
+                        <a href="https://wa.me/92472740080" target="_blank" title="WhatsApp">
                             <i class="fab fa-whatsapp"></i>
                         </a>
                         <a href="mailto:syedsikandarshah963@gmail.com" title="Email">
                             <i class="fas fa-envelope"></i>
                         </a>
-                        <a href="https://sykanex.online" target="_blank" title="Website">
-                            <i class="fas fa-globe"></i>
+                        <a href="#contact" title="Contact Form">
+                            <i class="fas fa-comment-alt"></i>
                         </a>
                     </div>
                 </div>
@@ -905,7 +2006,11 @@
                     <h3>Quick Links</h3>
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#ceo">CEO Message</a></li>
+                        <li><a href="#vision">Vision & Mission</a></li>
                         <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
                         <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
@@ -919,11 +2024,11 @@
                         </li>
                         <li>
                             <i class="fab fa-whatsapp"></i>
-                            <span>WhatsApp: <a href="https://wa.me/923001234567" target="_blank">+92 300 1234567</a></span>
+                            <span>WhatsApp: <a href="https://wa.me/92472740080" target="_blank">+92 472 740080</a></span>
                         </li>
                         <li>
                             <i class="fas fa-globe"></i>
-                            <span>Website: <a href="https://sykanex.online" target="_blank">sykanex.online</a></span>
+                            <span>Service: Global Remote Support</span>
                         </li>
                     </ul>
                 </div>
@@ -932,16 +2037,16 @@
                     <h3>Core Services</h3>
                     <ul class="footer-links">
                         <li><a href="#services">Web Development</a></li>
-                        <li><a href="#services">Data Analytics</a></li>
+                        <li><a href="#services">Software Solutions</a></li>
                         <li><a href="#services">Digital Marketing</a></li>
-                        <li><a href="#services">Payroll Management</a></li>
-                        <li><a href="#services">Freelance Services</a></li>
+                        <li><a href="#services">Data Analytics</a></li>
+                        <li><a href="#services">Graphics Design</a></li>
                     </ul>
                 </div>
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Sykanex Integrated Solutions. All rights reserved. | Website: sykanex.online | Email: syedsikandarshah963@gmail.com</p>
+                <p>&copy; <span id="currentYear"></span> SyKanEX Integrated Solutions. All rights reserved. | Driving Success Through Smart Solutions</p>
             </div>
         </div>
     </footer>
@@ -976,6 +2081,12 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if(targetElement) {
+                    // Close mobile menu if open
+                    if (window.innerWidth <= 991) {
+                        navMenu.classList.remove('active');
+                        mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                    
                     window.scrollTo({
                         top: targetElement.offsetTop - 80,
                         behavior: 'smooth'
@@ -984,48 +2095,155 @@
             });
         });
         
-        // Contact form submission
-        const contactForm = document.getElementById('contactForm');
-        if(contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                // Get form values
-                const name = document.getElementById('name').value;
-                const email = document.getElementById('email').value;
-                const phone = document.getElementById('phone').value;
-                const service = document.getElementById('service').value;
-                const message = document.getElementById('message').value;
-                
-                // Here you would normally send this data to a server
-                // For demo purposes, we'll just show an alert
-                alert(`Thank you, ${name}! Your message has been sent. We will contact you at ${email} soon.`);
-                
-                // Reset form
-                contactForm.reset();
-            });
-        }
-        
-        // WhatsApp number update
-        // Replace the placeholder WhatsApp number with your actual number
-        // Format: remove any spaces, dashes, or parentheses
-        // Example: +923001234567
-        const whatsappNumber = "923001234567"; // Change this to your actual WhatsApp number
-        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
-        
-        whatsappLinks.forEach(link => {
-            link.href = `https://wa.me/${whatsappNumber}`;
-        });
-        
-        // Update phone number in contact details
-        const phoneLinks = document.querySelectorAll('a[href*="wa.me"]');
-        phoneLinks.forEach(link => {
-            // Format the number for display
-            const formattedNumber = whatsappNumber.replace(/(\d{3})(\d{3})(\d{4})/, '+$1 $2 $3');
-            if(link.textContent.includes('+92')) {
-                link.textContent = formattedNumber;
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
         });
+        
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Contact Form with Formspree
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const submitSpinner = document.getElementById('submitSpinner');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Hide previous messages
+            successMessage.style.display = 'none';
+            errorMessage.style.display = 'none';
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Sending...';
+            submitSpinner.style.display = 'inline-block';
+            
+            // Get form data
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value || 'Not provided',
+                service: document.getElementById('service').value || 'Not specified',
+                message: document.getElementById('message').value,
+                _subject: 'New Contact Form Submission - SyKanEX Website',
+                _replyto: document.getElementById('email').value
+            };
+            
+            // Use Formspree for email submission
+            const formspreeEndpoint = 'https://formspree.io/f/mnqevnyn';
+            
+            // Send data using fetch API
+            fetch(formspreeEndpoint, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    successMessage.style.display = 'block';
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Scroll to success message
+                    setTimeout(() => {
+                        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 100);
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                
+                // Show error message
+                errorMessage.style.display = 'block';
+                setTimeout(() => {
+                    errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            })
+            .finally(() => {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.textContent = 'Send Message';
+                submitSpinner.style.display = 'none';
+            });
+        });
+        
+        // Add animation to elements when they come into view
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all cards
+        document.querySelectorAll('.service-card, .project-card, .feature-card, .vision-card, .ceo-image-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+        
+        // Simple counter animation for stats
+        function animateCounter(element, target, duration) {
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval(() => {
+                start += increment;
+                if (start >= target) {
+                    element.textContent = target + '+';
+                    clearInterval(timer);
+                } else {
+                    element.textContent = Math.floor(start) + '+';
+                }
+            }, 16);
+        }
+        
+        // Animate stats when they come into view
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const stats = document.querySelectorAll('.stat-number');
+                    stats.forEach(stat => {
+                        const target = parseInt(stat.textContent);
+                        animateCounter(stat, target, 1500);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        const statsSection = document.querySelector('.about-stats');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+        
+        console.log("SyKanEX Website Loaded Successfully!");
+        console.log("CEO: Syed Sikandar Shah");
+        console.log("Email: syedsikandarshah963@gmail.com");
+        console.log("WhatsApp: +92 472 740080");
     </script>
 </body>
 </html>
