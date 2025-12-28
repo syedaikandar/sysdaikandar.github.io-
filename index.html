@@ -68,9 +68,9 @@
             gap: 10px;
         }
         
-        .logo-icon {
-            color: var(--primary);
-            font-size: 28px;
+        .logo-img {
+            height: 50px;
+            width: auto;
         }
         
         .logo-text {
@@ -250,34 +250,99 @@
             font-weight: bold;
         }
         
-        /* GitHub Integration Section */
-        .github-section {
+        /* WhatsApp Float Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            background-color: #128c7e;
+            color: white;
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .whatsapp-text {
+            position: absolute;
+            right: 70px;
+            background-color: #25d366;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+        
+        .whatsapp-float:hover .whatsapp-text {
+            opacity: 1;
+        }
+        
+        /* Contact Section */
+        .contact-section {
             padding: 100px 0;
             background-color: white;
         }
         
-        .github-container {
+        .contact-container {
             display: flex;
-            align-items: center;
             gap: 50px;
+            align-items: flex-start;
         }
         
-        .github-content {
+        .contact-info {
             flex: 1;
         }
         
-        .github-content h2 {
+        .contact-info h2 {
             font-size: 2.5rem;
             color: var(--primary);
             margin-bottom: 20px;
         }
         
-        .github-content p {
+        .contact-info p {
             color: var(--gray);
             margin-bottom: 25px;
         }
         
-        .github-visual {
+        .contact-details {
+            list-style: none;
+            margin-top: 30px;
+        }
+        
+        .contact-details li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .contact-details i {
+            color: var(--secondary);
+            margin-right: 15px;
+            margin-top: 5px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
             flex: 1;
             background-color: var(--light);
             border-radius: 10px;
@@ -285,41 +350,48 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
         
-        .github-logo {
-            font-size: 4rem;
-            color: #333;
-            text-align: center;
+        .form-group {
             margin-bottom: 20px;
         }
         
-        .github-info {
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-left: 5px solid var(--secondary);
-        }
-        
-        .github-info h4 {
-            color: var(--primary);
-            margin-bottom: 10px;
-        }
-        
-        .github-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background-color: #333;
-            color: white;
-            padding: 12px 25px;
-            border-radius: 5px;
-            text-decoration: none;
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--dark);
             font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Roboto', sans-serif;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+        
+        .submit-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
             transition: background-color 0.3s;
         }
         
-        .github-link:hover {
-            background-color: #555;
+        .submit-btn:hover {
+            background-color: var(--secondary);
         }
         
         /* Footer */
@@ -373,21 +445,45 @@
             padding-left: 5px;
         }
         
-        .contact-info {
+        .contact-info-footer {
             list-style: none;
         }
         
-        .contact-info li {
+        .contact-info-footer li {
             display: flex;
             align-items: flex-start;
             margin-bottom: 15px;
             color: #ccc;
         }
         
-        .contact-info i {
+        .contact-info-footer i {
             color: var(--secondary);
             margin-right: 10px;
             margin-top: 5px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
         }
         
         .copyright {
@@ -400,7 +496,7 @@
         
         /* Responsive Design */
         @media (max-width: 992px) {
-            .github-container {
+            .contact-container {
                 flex-direction: column;
             }
             
@@ -446,6 +542,14 @@
             .section-title h2 {
                 font-size: 2rem;
             }
+            
+            .whatsapp-float {
+                width: 50px;
+                height: 50px;
+                bottom: 30px;
+                right: 30px;
+                font-size: 25px;
+            }
         }
         
         @media (max-width: 480px) {
@@ -468,18 +572,31 @@
             .service-card {
                 padding: 20px;
             }
+            
+            .whatsapp-float {
+                width: 45px;
+                height: 45px;
+                bottom: 20px;
+                right: 20px;
+                font-size: 22px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/923001234567" target="_blank" class="whatsapp-float">
+        <i class="fab fa-whatsapp"></i>
+        <span class="whatsapp-text">Chat on WhatsApp</span>
+    </a>
+    
     <!-- Header -->
     <header>
         <div class="container header-container">
             <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-cube"></i>
-                </div>
-                <div class="logo-text">Sykanex<span>Solutions</span></div>
+                <!-- Replace 'logo.png' with your actual logo file -->
+                <img src="logo.png" alt="Sykanex Integrated Solutions Logo" class="logo-img">
+                <div class="logo-text">Sykanex<span>Integrated Solutions</span></div>
             </div>
             
             <button class="mobile-menu-btn" id="mobileMenuBtn">
@@ -490,7 +607,6 @@
                 <ul id="navMenu">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#services">Services</a></li>
-                    <li><a href="#github">GitHub</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -502,7 +618,7 @@
         <div class="container">
             <h1>Sykanex Integrated Solutions</h1>
             <p>Providing comprehensive IT, development, and business support services to help your organization thrive in the digital age. From web development to data analytics, we offer end-to-end solutions tailored to your needs.</p>
-            <a href="#services" class="cta-button">Explore Our Services</a>
+            <a href="#contact" class="cta-button">Get In Touch</a>
         </div>
     </section>
 
@@ -683,62 +799,106 @@
         </div>
     </section>
 
-    <!-- GitHub Integration Section -->
-    <section class="github-section" id="github">
-        <div class="container github-container">
-            <div class="github-content">
-                <h2>GitHub Integration</h2>
-                <p>We leverage GitHub for version control, collaboration, and project management. Our development workflow is transparent and efficient, ensuring high-quality code delivery.</p>
-                <p>By connecting with GitHub, we maintain organized repositories, track changes effectively, and collaborate seamlessly with clients and team members.</p>
-                <p>Visit our GitHub profile to see examples of our work and development practices.</p>
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2>Get In Touch</h2>
+                <p>Ready to transform your business with our integrated solutions? Contact us today to discuss your project requirements or schedule a consultation.</p>
+                <p>We're here to help you achieve your business goals with our comprehensive range of services.</p>
                 
-                <div class="github-info">
-                    <h4>Connected Services</h4>
-                    <p>Our GitHub integration allows us to provide:</p>
-                    <ul class="service-features">
-                        <li>Code version control and history tracking</li>
-                        <li>Collaborative development workflows</li>
-                        <li>Automated testing and deployment</li>
-                        <li>Transparent project progress visibility</li>
-                    </ul>
-                </div>
-                
-                <a href="https://github.com" target="_blank" class="github-link">
-                    <i class="fab fa-github"></i> Visit Our GitHub Profile
-                </a>
+                <ul class="contact-details">
+                    <li>
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong><br>
+                            <a href="mailto:syedsikandarshah963@gmail.com">syedsikandarshah963@gmail.com</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fab fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp</strong><br>
+                            <a href="https://wa.me/923001234567" target="_blank">+92 300 1234567</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-globe"></i>
+                        <div>
+                            <strong>Website</strong><br>
+                            <a href="https://sykanex.online" target="_blank">sykanex.online</a>
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <strong>Business Hours</strong><br>
+                            Monday - Friday: 9:00 AM - 6:00 PM
+                        </div>
+                    </li>
+                </ul>
             </div>
             
-            <div class="github-visual">
-                <div class="github-logo">
-                    <i class="fab fa-github"></i>
-                </div>
-                <div class="github-info">
-                    <h4>GitHub Workflow</h4>
-                    <p>We use GitHub for:</p>
-                    <ul class="service-features">
-                        <li>Repository management for all projects</li>
-                        <li>Issue tracking and project management</li>
-                        <li>Pull request reviews and code quality checks</li>
-                        <li>Continuous integration and deployment</li>
-                    </ul>
-                </div>
-                <div class="github-info">
-                    <h4>Website: sykanex.online</h4>
-                    <p>Visit our official website for more information about our services and company profile.</p>
-                    <a href="https://sykanex.online" target="_blank" style="color: var(--primary); font-weight: 500;">sykanex.online</a>
-                </div>
+            <div class="contact-form">
+                <h3>Send us a message</h3>
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="service">Service Interested In</label>
+                        <select id="service" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 5px;">
+                            <option value="">Select a service</option>
+                            <option value="web">Web Development</option>
+                            <option value="software">Software & IT Solutions</option>
+                            <option value="seo">SEO Optimization</option>
+                            <option value="graphics">Graphics Designing</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="data">Data Analytics</option>
+                            <option value="lead">Lead Generation</option>
+                            <option value="accounting">Accounting Support</option>
+                            <option value="payroll">Payroll Management</option>
+                            <option value="freelance">Freelance Services</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer id="contact">
+    <footer>
         <div class="container">
             <div class="footer-content">
                 <div class="footer-column">
                     <h3>Sykanex Integrated Solutions</h3>
                     <p>Providing comprehensive IT, development, and business support services to help organizations thrive in the digital age.</p>
                     <p>Expert solutions tailored to your specific business needs.</p>
+                    <div class="social-links">
+                        <a href="https://wa.me/923001234567" target="_blank" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="mailto:syedsikandarshah963@gmail.com" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://sykanex.online" target="_blank" title="Website">
+                            <i class="fas fa-globe"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div class="footer-column">
@@ -746,29 +906,24 @@
                     <ul class="footer-links">
                         <li><a href="#home">Home</a></li>
                         <li><a href="#services">Services</a></li>
-                        <li><a href="#github">GitHub Integration</a></li>
-                        <li><a href="#contact">Contact Info</a></li>
+                        <li><a href="#contact">Contact</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-column">
                     <h3>Contact Information</h3>
-                    <ul class="contact-info">
+                    <ul class="contact-info-footer">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: <a href="mailto:syedsikandarshah963@gmail.com">syedsikandarshah963@gmail.com</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span>WhatsApp: <a href="https://wa.me/923001234567" target="_blank">+92 300 1234567</a></span>
+                        </li>
                         <li>
                             <i class="fas fa-globe"></i>
                             <span>Website: <a href="https://sykanex.online" target="_blank">sykanex.online</a></span>
-                        </li>
-                        <li>
-                            <i class="fab fa-github"></i>
-                            <span>GitHub: <a href="https://github.com" target="_blank">github.com/sykanex</a></span>
-                        </li>
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>Email: contact@sykanex.online</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <span>Phone: +1 (555) 123-4567</span>
                         </li>
                     </ul>
                 </div>
@@ -786,7 +941,7 @@
             </div>
             
             <div class="copyright">
-                <p>&copy; 2023 Sykanex Integrated Solutions. All rights reserved. | Website: sykanex.online | GitHub Integrated</p>
+                <p>&copy; 2023 Sykanex Integrated Solutions. All rights reserved. | Website: sykanex.online | Email: syedsikandarshah963@gmail.com</p>
             </div>
         </div>
     </footer>
@@ -827,6 +982,49 @@
                     });
                 }
             });
+        });
+        
+        // Contact form submission
+        const contactForm = document.getElementById('contactForm');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const service = document.getElementById('service').value;
+                const message = document.getElementById('message').value;
+                
+                // Here you would normally send this data to a server
+                // For demo purposes, we'll just show an alert
+                alert(`Thank you, ${name}! Your message has been sent. We will contact you at ${email} soon.`);
+                
+                // Reset form
+                contactForm.reset();
+            });
+        }
+        
+        // WhatsApp number update
+        // Replace the placeholder WhatsApp number with your actual number
+        // Format: remove any spaces, dashes, or parentheses
+        // Example: +923001234567
+        const whatsappNumber = "923001234567"; // Change this to your actual WhatsApp number
+        const whatsappLinks = document.querySelectorAll('a[href*="wa.me"]');
+        
+        whatsappLinks.forEach(link => {
+            link.href = `https://wa.me/${whatsappNumber}`;
+        });
+        
+        // Update phone number in contact details
+        const phoneLinks = document.querySelectorAll('a[href*="wa.me"]');
+        phoneLinks.forEach(link => {
+            // Format the number for display
+            const formattedNumber = whatsappNumber.replace(/(\d{3})(\d{3})(\d{4})/, '+$1 $2 $3');
+            if(link.textContent.includes('+92')) {
+                link.textContent = formattedNumber;
+            }
         });
     </script>
 </body>
