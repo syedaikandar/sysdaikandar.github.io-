@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sykanex Integrated Solutions | Professional IT & Business Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #2a3b8f;
+            --secondary: #00a8e8;
+            --accent: #ff6b35;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #fff;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .logo-text {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            left: 0;
+            bottom: -5px;
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 24px;
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(42, 59, 143, 0.9) 0%, rgba(0, 168, 232, 0.85) 100%), url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 160px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            border: 2px solid var(--accent);
+        }
+        
+        .cta-button:hover {
+            background-color: transparent;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Services Section */
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 30px;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+        }
+        
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .service-features {
+            list-style: none;
+        }
+        
+        .service-features li {
+            padding: 5px 0;
+            color: var(--dark);
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+        
+        /* GitHub Integration Section */
+        .github-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .github-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .github-content {
+            flex: 1;
+        }
+        
+        .github-content h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .github-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+        
+        .github-visual {
+            flex: 1;
+            background-color: var(--light);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .github-logo {
+            font-size: 4rem;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .github-info {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        .github-info h4 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .github-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: #333;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .github-link:hover {
+            background-color: #555;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: white;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .contact-info i {
+            color: var(--secondary);
+            margin-right: 10px;
+            margin-top: 5px;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #444;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .github-container {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background-color: white;
+                width: 100%;
+                text-align: center;
+                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+                transition: left 0.3s;
+                padding: 20px 0;
+            }
+            
+            nav ul.active {
+                left: 0;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .hero h1 {
+                font-size: 2.3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 140px 0 80px;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+            }
+            
+            .service-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-cube"></i>
+                </div>
+                <div class="logo-text">Sykanex<span>Solutions</span></div>
+            </div>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#github">GitHub</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Sykanex Integrated Solutions</h1>
+            <p>Providing comprehensive IT, development, and business support services to help your organization thrive in the digital age. From web development to data analytics, we offer end-to-end solutions tailored to your needs.</p>
+            <a href="#services" class="cta-button">Explore Our Services</a>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Professional Services</h2>
+                <p>We offer a wide range of services to meet your business needs. Each service is delivered with expertise and attention to detail.</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Software & IT Solutions -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Software & IT Solutions</h3>
+                    <p>Custom software development and IT infrastructure solutions tailored to your business requirements.</p>
+                    <ul class="service-features">
+                        <li>Custom Software Development</li>
+                        <li>IT Infrastructure Setup</li>
+                        <li>System Integration</li>
+                        <li>Cloud Solutions</li>
+                    </ul>
+                </div>
+                
+                <!-- Web Development -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Responsive, modern websites and web applications that deliver exceptional user experiences.</p>
+                    <ul class="service-features">
+                        <li>Responsive Website Design</li>
+                        <li>E-commerce Solutions</li>
+                        <li>Web Applications</li>
+                        <li>CMS Development</li>
+                    </ul>
+                </div>
+                
+                <!-- SEO Optimization -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Improve your website's visibility and ranking on search engines to attract more organic traffic.</p>
+                    <ul class="service-features">
+                        <li>Keyword Research</li>
+                        <li>On-Page Optimization</li>
+                        <li>Technical SEO</li>
+                        <li>Performance Analytics</li>
+                    </ul>
+                </div>
+                
+                <!-- Graphics Designing -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <h3>Graphics Designing</h3>
+                    <p>Creative visual designs that communicate your brand message effectively and attractively.</p>
+                    <ul class="service-features">
+                        <li>Logo & Brand Identity</li>
+                        <li>Marketing Materials</li>
+                        <li>UI/UX Design</li>
+                        <li>Digital Illustrations</li>
+                    </ul>
+                </div>
+                
+                <!-- Meta Ads & Digital Marketing -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Meta Ads & Digital Marketing</h3>
+                    <p>Strategic digital marketing campaigns to increase brand awareness and drive conversions.</p>
+                    <ul class="service-features">
+                        <li>Social Media Advertising</li>
+                        <li>Campaign Strategy</li>
+                        <li>Audience Targeting</li>
+                        <li>Performance Tracking</li>
+                    </ul>
+                </div>
+                
+                <!-- Data Mining & Web Research -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Data Mining & Web Research</h3>
+                    <p>Extract valuable insights from data sources to inform business decisions and strategies.</p>
+                    <ul class="service-features">
+                        <li>Competitive Analysis</li>
+                        <li>Market Research</li>
+                        <li>Data Extraction</li>
+                        <li>Trend Analysis</li>
+                    </ul>
+                </div>
+                
+                <!-- Data Cleaning & Data Analytics -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Data Cleaning & Data Analytics</h3>
+                    <p>Transform raw data into actionable insights through thorough cleaning and analysis.</p>
+                    <ul class="service-features">
+                        <li>Data Quality Assessment</li>
+                        <li>Data Transformation</li>
+                        <li>Statistical Analysis</li>
+                        <li>Visualization & Reporting</li>
+                    </ul>
+                </div>
+                
+                <!-- Lead Generation & Prospect Research -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <h3>Lead Generation & Prospect Research</h3>
+                    <p>Identify and qualify potential customers to build a robust sales pipeline for your business.</p>
+                    <ul class="service-features">
+                        <li>Target Audience Identification</li>
+                        <li>Prospect List Building</li>
+                        <li>Lead Qualification</li>
+                        <li>CRM Integration</li>
+                    </ul>
+                </div>
+                
+                <!-- Accounting & Operations Support -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Accounting & Operations Support</h3>
+                    <p>Comprehensive financial and operational support to keep your business running smoothly.</p>
+                    <ul class="service-features">
+                        <li>Bookkeeping Services</li>
+                        <li>Financial Reporting</li>
+                        <li>Process Optimization</li>
+                        <li>Compliance Management</li>
+                    </ul>
+                </div>
+                
+                <!-- Payroll Management -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Payroll Management</h3>
+                    <p>Accurate and timely payroll processing to ensure employee satisfaction and regulatory compliance.</p>
+                    <ul class="service-features">
+                        <li>Payroll Processing</li>
+                        <li>Tax Calculation & Filing</li>
+                        <li>Benefits Administration</li>
+                        <li>Compliance Reporting</li>
+                    </ul>
+                </div>
+                
+                <!-- Freelance & Project-Based Services -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Freelance & Project-Based Services</h3>
+                    <p>Flexible, project-based solutions for businesses that need specialized skills on demand.</p>
+                    <ul class="service-features">
+                        <li>Project-Based Consulting</li>
+                        <li>Specialized Skill Hire</li>
+                        <li>Short-Term Contracts</li>
+                        <li>Flexible Engagement Models</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GitHub Integration Section -->
+    <section class="github-section" id="github">
+        <div class="container github-container">
+            <div class="github-content">
+                <h2>GitHub Integration</h2>
+                <p>We leverage GitHub for version control, collaboration, and project management. Our development workflow is transparent and efficient, ensuring high-quality code delivery.</p>
+                <p>By connecting with GitHub, we maintain organized repositories, track changes effectively, and collaborate seamlessly with clients and team members.</p>
+                <p>Visit our GitHub profile to see examples of our work and development practices.</p>
+                
+                <div class="github-info">
+                    <h4>Connected Services</h4>
+                    <p>Our GitHub integration allows us to provide:</p>
+                    <ul class="service-features">
+                        <li>Code version control and history tracking</li>
+                        <li>Collaborative development workflows</li>
+                        <li>Automated testing and deployment</li>
+                        <li>Transparent project progress visibility</li>
+                    </ul>
+                </div>
+                
+                <a href="https://github.com" target="_blank" class="github-link">
+                    <i class="fab fa-github"></i> Visit Our GitHub Profile
+                </a>
+            </div>
+            
+            <div class="github-visual">
+                <div class="github-logo">
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="github-info">
+                    <h4>GitHub Workflow</h4>
+                    <p>We use GitHub for:</p>
+                    <ul class="service-features">
+                        <li>Repository management for all projects</li>
+                        <li>Issue tracking and project management</li>
+                        <li>Pull request reviews and code quality checks</li>
+                        <li>Continuous integration and deployment</li>
+                    </ul>
+                </div>
+                <div class="github-info">
+                    <h4>Website: sykanex.online</h4>
+                    <p>Visit our official website for more information about our services and company profile.</p>
+                    <a href="https://sykanex.online" target="_blank" style="color: var(--primary); font-weight: 500;">sykanex.online</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Sykanex Integrated Solutions</h3>
+                    <p>Providing comprehensive IT, development, and business support services to help organizations thrive in the digital age.</p>
+                    <p>Expert solutions tailored to your specific business needs.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#github">GitHub Integration</a></li>
+                        <li><a href="#contact">Contact Info</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fas fa-globe"></i>
+                            <span>Website: <a href="https://sykanex.online" target="_blank">sykanex.online</a></span>
+                        </li>
+                        <li>
+                            <i class="fab fa-github"></i>
+                            <span>GitHub: <a href="https://github.com" target="_blank">github.com/sykanex</a></span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>Email: contact@sykanex.online</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>Phone: +1 (555) 123-4567</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Core Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Data Analytics</a></li>
+                        <li><a href="#services">Digital Marketing</a></li>
+                        <li><a href="#services">Payroll Management</a></li>
+                        <li><a href="#services">Freelance Services</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Sykanex Integrated Solutions. All rights reserved. | Website: sykanex.online | GitHub Integrated</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
